@@ -1,0 +1,21 @@
+<html>
+<script>
+var words = [];
+function saveComment() {
+	var newInput = document.getElementById("writeHere").value;
+	//console.log(newInput);
+
+	words.push(newInput);
+  console.log(words);
+}
+</script>
+
+<img src="troll4.jpg" />
+<br> </br>
+
+<input id="writeHere" type="text" name="textfield" value="send the troll some <3" size= "40"/>
+<br> </br>
+<input onclick="saveComment()" type="submit" name="submitbutton" value="Submit" />
+<input type="reset" name="resetbutton" value="Reset" />
+
+</html>
