@@ -1,0 +1,71 @@
+
+/* look for videos in element with video-div id */
+body{
+  font-family: 'Didact Gothic', sans-serif;
+  background-color: rgb(243, 243, 243);
+  color: Gray;
+  font-size: 14;
+  text-align: center;
+
+}
+
+#button {
+    background-color: #00cdcf;
+    border: none;
+    color: #ffffff;
+    padding: 30px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #00cdcf;
+    border: none;
+    color: #ffffff;
+    padding: 30px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+#video-div video {
+  height: 50px;
+  width: 500px;
+}
+
+#title {
+  text-align: center;
+  font-family: 'Didact Gothic', sans-serif;
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+
+
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* input#share-button {
+  display: "none";
+} */

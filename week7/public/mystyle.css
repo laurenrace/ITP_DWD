@@ -1,0 +1,10 @@
+
+/* look for videos in element with video-div id */
+#video-div video {
+  height: 50px;
+  width: 500px;
+}
+
+/* input#share-button {
+  display: "none";
+} */
