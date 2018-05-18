@@ -12,10 +12,14 @@ function saveAudio() {
         <source src="headphones.mov" type="video/mov">
     </video>
 </div>
+<br> </br>
+ <br></br>
 
-<div id="title" >Audiocast</div>
+<div id="title" >byte</div>
+<div id="h1" >auditory social media for all</div>
 <br> </br>
  </br>
+   <br></br>
 
 <html>
 <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
@@ -30,20 +34,21 @@ function saveAudio() {
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-		<script src="recordV2.js" type="text/javascript"></script>
 		<!-- script src=jquery -->
 		<!-- <script src="jquery-3.3.1.min.js"></script> -->
 	</head>
 
-
+  <br></br>
 	<body>
-		<span id="seconds-text">What's new with me</span>
+		<span id="seconds-text">What's new with you?</span>
 		<br> </br>
-
-		<input type="button" id="button" class="button" name="startbutton" onclick="startRecorder()" value="Record a Story" />
+<input type="text" id="namebox" name="firstname" placeholder="Your name" />
+<br>
+</br>
+		<input type="button" id="button" class="button" name="startbutton" onclick="startRecorder()" value="Record a byte" />
 		<!-- <input type="button" name="pushbutton" value="Stop" /> -->
 
-    <input type="reset" id="button" class="button" name="resetbutton" onclick="resetRecorder()" value="Re-record" />
+    <!-- <input type="reset" id="button" class="button" name="resetbutton" onclick="resetRecorder()" value="Erase" /> -->
 
 		<div id="video-div">
      <!-- we're putting our video here -->
@@ -55,9 +60,23 @@ function saveAudio() {
 		</br>
 		<input type="button" id="share-button" class="button" style="display: none" name="submitbutton" onclick="submitRecording()" value="Share" />
 		</br>
-		What's new with my friends
+      <br></br>
+        <br></br>
+		<span> What's new with your friends? </span>
 		<br>
 		</br>
-		<input type="button" id="button" class="button" name="pushbutton" href="/newsfeedV2" value="Listen to Feed" />
+    <input type="button" id="playAllButton" class="button" name="pushbutton" value="Play" />
+    <input type="button" id="pauseButton" class="button" name="pushbutton" value="Pause" />
+    <input type="button" id="skipButton" class="button" name="pushbutton" value="Skip" />
+    <input type="button" id="resetButton" class="button" name="pushbutton" value="Start Over" />
+    <br>
+		</br>
+    <br>
+		</br>
+    <div id="audioContainer">
+    </div>
+    <script src="recordV2.js" type="text/javascript"></script>
+    <br> </br>
+
 	</body>
 	</html>

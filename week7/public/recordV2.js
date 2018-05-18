@@ -14,16 +14,16 @@ var Interval ;
 var blob;
 var chunks = [];
 
-var mongojs = require('mongojs');
-var db = mongojs("lauren_race:Hedgehog1@ds155587.mlab.com:55587/audio-cast", ["audiodb"]);
-
-db.on('connect', function() {
-  console.log('connected to db mothafuckaaaa');
-});
-
-db.on('error', function() {
-  console.log('we had an error.');
-});
+// var mongojs = require('mongojs');
+// var db = mongojs("lauren_race:Hedgehog1@ds155587.mlab.com:55587/audio-cast", ["audiodb"]);
+//
+// db.on('connect', function() {
+//   console.log('connected to db mothafuckaaaa');
+// });
+//
+// db.on('error', function() {
+//   console.log('we had an error.');
+// });
 
 function init() {
 
@@ -46,14 +46,54 @@ function startRecorder() {
         var mediaRecorder = new MediaRecorder(stream);
 
         mediaRecorder.onstop = function(e) {
-          console.log("stop");
+          console.log("stop", chunks);
 
           myvideo = document.createElement('video');
 
           myvideo.controls = true;
           blob = new Blob(chunks, { 'type' : 'video/webm' });
+          console.log(blob);
           var videoURL = window.URL.createObjectURL(blob);
           myvideo.src = videoURL;
+
+          // $.ajax({
+          //   type: "POST",
+          //   url: "/newPost",  // route on express server
+          //   data: {data: blob}, // {"response":myvideo.src}
+          //   success: function(){console.log("success")},  // function to run when good
+          //   // dataType: dataType // JSON
+          // });
+          // converts blob to base64
+
+
+          // hi shawn i tried this https://stackoverflow.com/a/24003932
+          var blobToBase64 = function(blob, cb) {
+            var reader = new FileReader();
+            reader.onload = function() {
+              var dataUrl = reader.result;
+              var base64 = dataUrl.split(',')[1];
+              cb(base64);
+            };
+            reader.readAsDataURL(blob);
+          };
+
+          blobToBase64(blob, function(base64){ // encode
+            var update = {'blob': base64};
+            // $http.post('/api/save_recording', update)
+            //   .success(function(new_recording) {
+            //     console.log("success");
+            //   });
+
+              $.ajax({
+                type: "POST",
+                url: "/newPost",  // route on express server
+                data: update, // {"response":myvideo.src}
+                success: function(){console.log("success")},  // function to run when good
+                // dataType: dataType // JSON
+              });
+          });
+
+
 
           var videoDiv = document.getElementById("video-div");
           console.log(videoDiv);
@@ -82,13 +122,31 @@ function startRecorder() {
 }
 
 function submitRecording(){
-  db.audiodb.save({"response":myvideo.src}, function(err, saved) {
-  if( err || !saved ) console.log("Not saved");
-  else console.log("Saved");
-});
+
+  // THis is code for the server side, express server
+
+//   db.audiodb.save({"response":myvideo.src}, function(err, saved) {
+//   if( err || !saved ) console.log("Not saved");
+//   else console.log("Saved");
+// });
+
+  // Use JQuery to create a form post
+  //https://api.jquery.com/jquery.post/
+  /*
+  $.ajax({
+    type: "POST",
+    url: url,  // route on express server
+    data: data, // {"response":myvideo.src}
+    success: success,  // function to run when good
+    dataType: dataType // JSON
+  });
+  */
+
+  // Once you have it sent to server, you can stop with the arrya
   submissions.push(myvideo.src)
   console.log(submissions)
 
+  // After sending to server, then go to newsfeed
   //window.location.href = "http://localhost:3000/newsfeed";
 
   showSubmissions();
@@ -107,7 +165,7 @@ function toggleShareButton() {
     // console.log(shareButton);
     // debugger;
     if (chunks) {
-        shareButton.style.display = "block";
+        shareButton.style.display = "inline";
     } else {
         shareButton.style.display = "none";
     }
